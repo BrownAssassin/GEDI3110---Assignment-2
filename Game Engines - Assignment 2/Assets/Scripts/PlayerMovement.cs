@@ -9,12 +9,17 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayer;
 
+    private Animator animator;
     private float horizontal;
     [SerializeField] private float speed = 8f;
     [SerializeField] private float jumpingPower = 16f;
     private bool isFacingRight = true;
 
-    // Update is called once per frame
+    void Start()
+    {
+        animator = gameObject.GetComponent<Animator>();
+    }
+    
     void Update()
     {
         rigidbody2D.velocity = new Vector2(horizontal * speed, rigidbody2D.velocity.y);
@@ -26,6 +31,15 @@ public class PlayerMovement : MonoBehaviour
         else if (isFacingRight && horizontal < 0f)
         {
             Flip();
+        }
+
+        if (horizontal != 0f)
+        {
+            animator.SetBool("isRunning", true);
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
         }
     }
 
