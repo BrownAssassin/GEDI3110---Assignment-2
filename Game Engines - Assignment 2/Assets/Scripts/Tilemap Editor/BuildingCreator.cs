@@ -91,7 +91,7 @@ public class BuildingCreator : Singleton<BuildingCreator>
 
     public void ObjectSelected(BuildingObjectBase objectBase)
     {
-        selectedObj = objectBase;
+        SelectedObj = objectBase;
     }
 
     private void UpdatePreview()
